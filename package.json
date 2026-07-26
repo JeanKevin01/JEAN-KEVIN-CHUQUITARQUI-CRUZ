@@ -1,0 +1,30 @@
+{
+  "name": "jean-kevin-chuquitarqui-cruz",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Portafolio y CV interactivo de Jean Kevin Chuquitarqui Cruz — Ingeniería Civil, arquitectura de sistemas y automatización.",
+  "scripts": {
+    "graph": "node scripts/build-graph.mjs",
+    "dev": "vite",
+    "build": "npm run graph && tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.6",
+    "@react-three/fiber": "^9.1.2",
+    "framer-motion": "^12.6.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.175.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "@types/three": "^0.175.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.5"
+  }
+}
