@@ -63,11 +63,17 @@ export default function Producto() {
   return (
     <section id="producto" className="borde-sup">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(PRODUCTO.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(PRODUCTO.titulo)}</h2>
-          <p className="intro">{t(PRODUCTO.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(PRODUCTO.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(PRODUCTO.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(PRODUCTO.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="producto">
           {/* Selector de módulo */}

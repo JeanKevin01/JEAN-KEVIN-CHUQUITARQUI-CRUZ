@@ -54,13 +54,20 @@ export function Hero() {
         </Reveal>
         <Reveal delay={320}>
           <div className="hero-cta">
-            <a href="#sistema" className="btn btn-primario">
+            <a href="#producto" className="btn btn-primario">
               {t(HERO.cta1)} <Icono nombre="flecha" />
             </a>
-            <a href="#trayectoria" className="btn">
+            <a href="#tesis" className="btn">
               {t(HERO.cta2)}
             </a>
           </div>
+        </Reveal>
+        <Reveal delay={400}>
+          <ul className="hero-datos">
+            {HERO.datos.map((d, i) => (
+              <li key={i}>{t(d)}</li>
+            ))}
+          </ul>
         </Reveal>
       </div>
 
@@ -79,11 +86,17 @@ export function Cadena() {
   return (
     <section id="problema" className="borde-sup blueprint">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(CADENA.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(CADENA.titulo)}</h2>
-          <p className="intro">{t(CADENA.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(CADENA.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(CADENA.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(CADENA.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="cadena">
           {CADENA.pasos.map((p, i) => (
@@ -114,11 +127,17 @@ export function Resuelve() {
   return (
     <section id="resuelve" className="borde-sup">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(RESUELVE.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(RESUELVE.titulo)}</h2>
-          <p className="intro">{t(RESUELVE.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(RESUELVE.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(RESUELVE.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(RESUELVE.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="resuelve">
           {RESUELVE.items.map((r, i) => (
@@ -241,11 +260,17 @@ export function Restricciones() {
   return (
     <section id="terreno" className="borde-sup">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(RESTRICCIONES.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(RESTRICCIONES.titulo)}</h2>
-          <p className="intro">{t(RESTRICCIONES.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(RESTRICCIONES.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(RESTRICCIONES.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(RESTRICCIONES.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="rejilla dos">
           {RESTRICCIONES.items.map((r, i) => (
@@ -385,11 +410,17 @@ export function Decisiones() {
   return (
     <section id="criterio" className="borde-sup blueprint">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(DECISIONES.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(DECISIONES.titulo)}</h2>
-          <p className="intro">{t(DECISIONES.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(DECISIONES.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(DECISIONES.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(DECISIONES.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="rejilla dos">
           {DECISIONES.items.map((d, i) => (
@@ -489,11 +520,17 @@ export function Pendiente() {
   return (
     <section className="borde-sup blueprint">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(PENDIENTE.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(PENDIENTE.titulo)}</h2>
-          <p className="intro">{t(PENDIENTE.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(PENDIENTE.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(PENDIENTE.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(PENDIENTE.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="lista">
           {PENDIENTE.items.map((p, i) => (
@@ -515,11 +552,17 @@ export function Metodo() {
   return (
     <section className="borde-sup">
       <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(METODO.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(METODO.titulo)}</h2>
-          <p className="intro">{t(METODO.intro)}</p>
-        </Reveal>
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(METODO.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(METODO.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(METODO.intro)}</p>
+          </Reveal>
+        </div>
 
         <div className="rejilla tres">
           {METODO.items.map((m, i) => (

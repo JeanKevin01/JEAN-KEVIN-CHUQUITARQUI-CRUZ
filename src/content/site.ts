@@ -42,7 +42,15 @@ export const HERO = {
     en: 'I did not come from computer science: I came from the field. I learned to program because the problem in front of me could not be solved with one more spreadsheet template. Today I design and build the system that measures whether a construction project actually makes money.',
   } as L,
   cta1: { es: 'Ver el sistema', en: 'See the system' } as L,
-  cta2: { es: 'Trayectoria', en: 'Background' } as L,
+  cta2: { es: 'Para una tesis', en: 'For a thesis' } as L,
+  // La honestidad que vive en la pantalla 12 también tiene que estar arriba:
+  // es lo que compra credibilidad con un académico en los primeros segundos.
+  datos: [
+    { es: 'En producción', en: 'In production' } as L,
+    { es: '12 semanas', en: '12 weeks' } as L,
+    { es: 'Una persona', en: 'One person' } as L,
+    { es: 'En validación, sin usuarios activos', en: 'In validation, no active users' } as L,
+  ],
 }
 
 /* ── El problema: la cadena rota ──────────────────────────────────── */
