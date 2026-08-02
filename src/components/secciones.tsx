@@ -1,9 +1,10 @@
-import { Suspense, lazy, useState } from 'react'
+import { Suspense, lazy, useState, type ReactNode } from 'react'
 import { useI18n } from '../i18n'
 import {
   CADENA,
   CIFRAS,
   DECISIONES,
+  DETALLE,
   HERO,
   METODO,
   PENDIENTE,
@@ -11,6 +12,7 @@ import {
   PROBLEMAS,
   PROPOSITO,
   RESTRICCIONES,
+  RESUELVE,
   SISTEMA,
   STACK,
   TRAYECTORIA,
@@ -104,7 +106,75 @@ export function Cadena() {
   )
 }
 
-/* ── 02 · Restricciones ───────────────────────────────────────────── */
+/* ── 02 · Qué resuelve ────────────────────────────────────────────── */
+
+export function Resuelve() {
+  const { t } = useI18n()
+  return (
+    <section id="resuelve" className="borde-sup">
+      <div className="wrap">
+        <Reveal>
+          <span className="eyebrow">{t(RESUELVE.eyebrow)}</span>
+          <h2 className="titulo-seccion">{t(RESUELVE.titulo)}</h2>
+          <p className="intro">{t(RESUELVE.intro)}</p>
+        </Reveal>
+
+        <div className="resuelve">
+          {RESUELVE.items.map((r, i) => (
+            <Reveal key={i} delay={(i % 2) * 80}>
+              <article className="resuelve-par">
+                <div className="lado antes">
+                  <span className="et">{t(RESUELVE.etAntes)}</span>
+                  <p>{t(r.antes)}</p>
+                </div>
+                <Icono nombre="flecha" />
+                <div className="lado ahora">
+                  <span className="et">{t(RESUELVE.etAhora)}</span>
+                  <p>{t(r.ahora)}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── Detalle técnico · plegable ───────────────────────────────────── */
+
+/**
+ * Envuelve las secciones de ingeniería fina. Van cerradas por defecto: el
+ * lector que solo quiere entender qué resuelve el sistema no debería tener que
+ * scrollear seis pantallas de criterio de arquitectura para llegar al final.
+ */
+export function DetalleTecnico({ children }: { children: ReactNode }) {
+  const { t } = useI18n()
+  const [abierto, setAbierto] = useState(false)
+
+  return (
+    <section className="borde-sup detalle">
+      <div className="wrap">
+        <Reveal>
+          <button className="detalle-cab" onClick={() => setAbierto(!abierto)} aria-expanded={abierto}>
+            <div>
+              <span className="eyebrow">{t(DETALLE.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(DETALLE.titulo)}</h2>
+              <p className="intro">{t(DETALLE.intro)}</p>
+            </div>
+            <span className="detalle-boton">
+              {abierto ? t(DETALLE.ocultar) : t(DETALLE.mostrar)}
+              <i data-abierto={abierto}>+</i>
+            </span>
+          </button>
+        </Reveal>
+      </div>
+      {abierto && <div className="detalle-cuerpo">{children}</div>}
+    </section>
+  )
+}
+
+/* ── 05 · Restricciones ───────────────────────────────────────────── */
 
 export function Restricciones() {
   const { t } = useI18n()
@@ -269,7 +339,7 @@ export function Decisiones() {
 
 export function Problemas() {
   const { t } = useI18n()
-  const [abierto, setAbierto] = useState<number | null>(0)
+  const [abierto, setAbierto] = useState<number | null>(null)
 
   return (
     <section className="borde-sup">

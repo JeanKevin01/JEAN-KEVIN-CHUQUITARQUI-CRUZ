@@ -105,10 +105,164 @@ export const CADENA = {
   } as L,
 }
 
+/* ── Qué resuelve ─────────────────────────────────────────────────── */
+
+export const RESUELVE = {
+  eyebrow: { es: '02 — Qué resuelve', en: '02 — What it solves' } as L,
+  titulo: {
+    es: 'Cuatro cosas que dejan de pasar',
+    en: 'Four things that stop happening',
+  } as L,
+  intro: {
+    es: 'Sin entrar todavía en cómo está hecho por dentro: esto es lo que cambia en la oficina técnica el lunes por la mañana.',
+    en: 'Without going into how it works inside yet: this is what changes in the technical office on Monday morning.',
+  } as L,
+  items: [
+    {
+      antes: {
+        es: 'El informe semanal se armaba a mano, cruzando tres archivos.',
+        en: 'The weekly report was assembled by hand, cross-checking three files.',
+      } as L,
+      ahora: {
+        es: 'Sale del mismo dato que registró el supervisor en campo. Nadie vuelve a digitar nada.',
+        en: 'It comes out of the same record the supervisor entered in the field. Nobody retypes anything.',
+      } as L,
+    },
+    {
+      antes: {
+        es: 'El avance de una partida era la opinión de quien la miraba.',
+        en: 'A work item’s progress was the opinion of whoever looked at it.',
+      } as L,
+      ahora: {
+        es: 'Es la suma de hitos verificables: habilitado, encofrado, vaciado. Auditable ante el cliente que lo firma.',
+        en: 'It is the sum of verifiable milestones: prep, formwork, pour. Auditable before the client who signs it.',
+      } as L,
+    },
+    {
+      antes: {
+        es: 'Si el proyecto iba atrasado, se sabía al cierre del mes.',
+        en: 'If the project was behind, you found out at month close.',
+      } as L,
+      ahora: {
+        es: 'Se ve en la curva de la misma semana, cuando todavía se puede corregir.',
+        en: 'You see it on the curve the same week, while there is still time to correct.',
+      } as L,
+    },
+    {
+      antes: {
+        es: 'Cuando el número final no cuadraba, no había forma de rastrear dónde se rompió.',
+        en: 'When the final number did not add up, there was no way to trace where it broke.',
+      } as L,
+      ahora: {
+        es: 'Cada cifra se puede seguir hacia atrás hasta el turno y la persona que la registró.',
+        en: 'Every figure can be traced back to the shift and the person who recorded it.',
+      } as L,
+    },
+  ],
+  etAntes: { es: 'Antes', en: 'Before' } as L,
+  etAhora: { es: 'Ahora', en: 'Now' } as L,
+}
+
+/* ── El producto, en pantalla ─────────────────────────────────────── */
+
+export const PRODUCTO = {
+  eyebrow: { es: '04 — El producto', en: '04 — The product' } as L,
+  titulo: {
+    es: 'Esto es lo que ve la oficina técnica',
+    en: 'This is what the technical office sees',
+  } as L,
+  intro: {
+    es: 'Capturas del sistema corriendo en producción, no maquetas. Los nombres de personas están reemplazados y las fotos de obra desenfocadas por confidencialidad; los números y los gráficos son los reales.',
+    en: 'Screenshots of the system running in production, not mockups. People’s names are replaced and site photos blurred for confidentiality; the numbers and charts are the real ones.',
+  } as L,
+  ampliar: { es: 'Clic para ampliar', en: 'Click to enlarge' } as L,
+  cerrar: { es: 'Cerrar', en: 'Close' } as L,
+  vistas: [
+    {
+      k: 'curva-s',
+      t: { es: 'Curva S · valor ganado', en: 'S-curve · earned value' } as L,
+      pregunta: { es: '¿Vamos atrasados o adelantados?', en: 'Are we behind or ahead?' } as L,
+      d: {
+        es: 'Tres curvas en el mismo gráfico: lo que el plan decía que se debía llevar, lo que realmente se ganó y lo que costó. Arriba, los índices que cualquier cliente que trabaje con valor ganado reconoce sin explicación previa.',
+        en: 'Three curves on one chart: what the plan said should be done, what was actually earned and what it cost. Above them, the indices any client working with earned value recognises without explanation.',
+      } as L,
+      chips: {
+        es: ['SPI', 'CPI', 'BAC', 'EAC', 'VAC', 'TCPI'],
+        en: ['SPI', 'CPI', 'BAC', 'EAC', 'VAC', 'TCPI'],
+      },
+    },
+    {
+      k: 'valor-ganado',
+      t: { es: 'Avance por hitos ponderados', en: 'Weighted-milestone progress' } as L,
+      pregunta: { es: '¿Cuánto se avanzó de verdad?', en: 'How much progress is real?' } as L,
+      d: {
+        es: 'El porcentaje de avance del proyecto, las horas-hombre ganadas contra las gastadas y la proyección al término. Todo desagregable por fase, por disciplina y por área.',
+        en: 'Project percent complete, earned man-hours against spent ones and the projection at completion. All of it broken down by phase, discipline and area.',
+      } as L,
+      chips: {
+        es: ['% avance', 'HH ganadas', 'HH gastadas', 'proyección'],
+        en: ['% complete', 'earned MH', 'spent MH', 'forecast'],
+      },
+    },
+    {
+      k: 'resumen-ejecutivo',
+      t: { es: 'Resumen ejecutivo', en: 'Executive summary' } as L,
+      pregunta: { es: '¿Qué se le manda al cliente?', en: 'What goes to the client?' } as L,
+      d: {
+        es: 'La tabla área × disciplina que antes se armaba a mano cada semana. Sale del mismo dato de campo, con el semáforo de productividad ya calculado por fila.',
+        en: 'The area × discipline table that used to be assembled by hand every week. It comes from the same field record, with the productivity traffic light already computed per row.',
+      } as L,
+      chips: {
+        es: ['por área', 'por disciplina', 'exportable a PDF'],
+        en: ['by area', 'by discipline', 'PDF export'],
+      },
+    },
+    {
+      k: 'programacion',
+      t: { es: 'Programación Last Planner', en: 'Last Planner scheduling' } as L,
+      pregunta: { es: '¿Qué se planificó y qué pasó?', en: 'What was planned and what happened?' } as L,
+      d: {
+        es: 'El plan semanal y el reporte de campo en el mismo calendario: lo programado, lo ejecutado y las fotos del parte diario. De ahí salen el PPC y las causas de no cumplimiento.',
+        en: 'The weekly plan and the field report on one calendar: what was scheduled, what was executed and the daily-report photos. PPC and non-completion causes come from here.',
+      } as L,
+      chips: {
+        es: ['LookAhead', 'PPC', 'restricciones', 'parte diario'],
+        en: ['look-ahead', 'PPC', 'constraints', 'daily report'],
+      },
+    },
+    {
+      k: 'isp',
+      t: { es: 'Productividad por disciplina', en: 'Productivity by discipline' } as L,
+      pregunta: { es: '¿Dónde se está perdiendo?', en: 'Where are we losing?' } as L,
+      d: {
+        es: 'Horas planificadas, ganadas y gastadas por disciplina, con las horas improductivas registradas aparte para que no ensucien el indicador de las partidas.',
+        en: 'Planned, earned and spent hours per discipline, with unproductive hours logged separately so they do not contaminate the work items’ indicator.',
+      } as L,
+      chips: {
+        es: ['por disciplina', 'HH improductivas', 'ISP'],
+        en: ['by discipline', 'unproductive MH', 'ISP'],
+      },
+    },
+    {
+      k: 'performance',
+      t: { es: 'Corte semana a semana', en: 'Week-by-week cut' } as L,
+      pregunta: { es: '¿Cómo venimos evolucionando?', en: 'How are we trending?' } as L,
+      d: {
+        es: 'Una fila por semana con el corte completo del motor de cálculo. Es la serie histórica que permite ver si el proyecto mejora o se deteriora, no una foto suelta.',
+        en: 'One row per week with the calculation engine’s full cut. It is the historical series that shows whether the project is improving or deteriorating, not an isolated snapshot.',
+      } as L,
+      chips: {
+        es: ['serie semanal', 'desvío', 'proyección'],
+        en: ['weekly series', 'deviation', 'forecast'],
+      },
+    },
+  ],
+}
+
 /* ── Restricciones físicas ────────────────────────────────────────── */
 
 export const RESTRICCIONES = {
-  eyebrow: { es: '02 — El terreno manda', en: '02 — The ground rules' } as L,
+  eyebrow: { es: '05 — El terreno manda', en: '05 — The ground rules' } as L,
   titulo: {
     es: 'Cuatro restricciones físicas, no una moda tecnológica',
     en: 'Four physical constraints, not a tech trend',
@@ -250,7 +404,7 @@ export const SISTEMA = {
 /* ── Cifras ───────────────────────────────────────────────────────── */
 
 export const CIFRAS = {
-  eyebrow: { es: '04 — Cifras', en: '04 — Numbers' } as L,
+  eyebrow: { es: '06 — Cifras', en: '06 — Numbers' } as L,
   titulo: { es: 'Doce semanas, una persona', en: 'Twelve weeks, one person' } as L,
   corte: { es: 'Corte: 26 de julio de 2026', en: 'As of: July 26, 2026' } as L,
   items: [
@@ -305,7 +459,7 @@ export const CIFRAS = {
 /* ── Grafo ────────────────────────────────────────────────────────── */
 
 export const GRAFO = {
-  eyebrow: { es: '05 — El código, por dentro', en: '05 — The code, from inside' } as L,
+  eyebrow: { es: '07 — El código, por dentro', en: '07 — The code, from inside' } as L,
   titulo: { es: 'El grafo real del sistema', en: 'The real graph of the system' } as L,
   intro: {
     es: 'Esto no es una ilustración. Es el grafo de conocimiento extraído de los tres repositorios con un indexador estático: cada esfera es un archivo real, su tamaño es la cantidad de símbolos que define y cada arista es una relación de llamada agregada entre archivos. Gira, acerca y haz clic en cualquier nodo.',
@@ -346,10 +500,26 @@ export const GRAFO = {
   },
 }
 
+/* ── Puerta al detalle técnico ────────────────────────────────────── */
+
+export const DETALLE = {
+  eyebrow: { es: '08 — Detalle técnico', en: '08 — Technical detail' } as L,
+  titulo: {
+    es: 'Cómo está hecho por dentro',
+    en: 'How it works inside',
+  } as L,
+  intro: {
+    es: 'Hasta aquí está lo que el sistema resuelve. Lo que sigue es el criterio de ingeniería que lo sostiene: las decisiones de arquitectura, los errores que costaron entenderlas y lo que todavía no está resuelto. Es la parte que interesa en una conversación técnica seria —y la que se puede saltar sin perder el hilo—.',
+    en: 'Up to here is what the system solves. What follows is the engineering judgment behind it: the architectural decisions, the bugs it took to understand them and what is still unsolved. It is the part that matters in a serious technical conversation —and the part you can skip without losing the thread.',
+  } as L,
+  mostrar: { es: 'Abrir el detalle', en: 'Open the detail' } as L,
+  ocultar: { es: 'Cerrar el detalle', en: 'Close the detail' } as L,
+}
+
 /* ── Decisiones de arquitectura ───────────────────────────────────── */
 
 export const DECISIONES = {
-  eyebrow: { es: '06 — Criterio', en: '06 — Judgment' } as L,
+  eyebrow: { es: '08.1 — Criterio', en: '08.1 — Judgment' } as L,
   titulo: {
     es: 'Decisiones, no funcionalidades',
     en: 'Decisions, not features',
@@ -455,7 +625,7 @@ export const DECISIONES = {
 /* ── Problemas difíciles ──────────────────────────────────────────── */
 
 export const PROBLEMAS = {
-  eyebrow: { es: '07 — Los bugs que enseñan', en: '07 — The bugs that teach' } as L,
+  eyebrow: { es: '08.2 — Los bugs que enseñan', en: '08.2 — The bugs that teach' } as L,
   titulo: {
     es: 'El error que no revienta, solo miente',
     en: 'The bug that does not crash — it lies',
@@ -541,7 +711,7 @@ export const PROBLEMAS = {
 /* ── Lo que no está resuelto ──────────────────────────────────────── */
 
 export const PENDIENTE = {
-  eyebrow: { es: '08 — Honestidad', en: '08 — Honesty' } as L,
+  eyebrow: { es: '08.3 — Honestidad', en: '08.3 — Honesty' } as L,
   titulo: {
     es: 'Lo que todavía no está resuelto',
     en: 'What is still unsolved',
@@ -595,7 +765,7 @@ export const PENDIENTE = {
 /* ── Método de trabajo con IA ─────────────────────────────────────── */
 
 export const METODO = {
-  eyebrow: { es: '09 — Método', en: '09 — Method' } as L,
+  eyebrow: { es: '08.4 — Método', en: '08.4 — Method' } as L,
   titulo: { es: 'Dónde estuvo el humano', en: 'Where the human was' } as L,
   intro: {
     es: 'Este sistema se construyó con asistencia de inteligencia artificial. Lo honesto es decir exactamente qué parte no la hizo la máquina.',
@@ -650,7 +820,7 @@ export const METODO = {
 /* ── Trayectoria ──────────────────────────────────────────────────── */
 
 export const TRAYECTORIA = {
-  eyebrow: { es: '10 — Trayectoria', en: '10 — Background' } as L,
+  eyebrow: { es: '09 — Trayectoria', en: '09 — Background' } as L,
   titulo: { es: 'Obra, modelo y código', en: 'Field, model and code' } as L,
   experiencia: [
     {
@@ -794,7 +964,7 @@ export const TRAYECTORIA = {
 /* ── Stack ────────────────────────────────────────────────────────── */
 
 export const STACK = {
-  eyebrow: { es: '11 — Herramientas', en: '11 — Tooling' } as L,
+  eyebrow: { es: '10 — Herramientas', en: '10 — Tooling' } as L,
   titulo: { es: 'Lo que uso y para qué', en: 'What I use and what for' } as L,
   intro: {
     es: 'Ordenado por dominio. Cada fila responde a un problema que tuve delante, no a una lista de tendencias.',
@@ -884,7 +1054,7 @@ export const STACK = {
 /* ── Propósito / cierre ───────────────────────────────────────────── */
 
 export const PROPOSITO = {
-  eyebrow: { es: '12 — Propósito', en: '12 — Purpose' } as L,
+  eyebrow: { es: '11 — Propósito', en: '11 — Purpose' } as L,
   titulo: {
     es: 'Lo que BIM hizo con la geometría, sin hacer para el costo',
     en: 'What BIM did for geometry, still undone for cost',
@@ -904,9 +1074,10 @@ export const NAV = {
   items: [
     { id: 'inicio', t: { es: 'Inicio', en: 'Home' } as L },
     { id: 'problema', t: { es: 'Problema', en: 'Problem' } as L },
+    { id: 'resuelve', t: { es: 'Qué resuelve', en: 'What it solves' } as L },
     { id: 'sistema', t: { es: 'Sistema', en: 'System' } as L },
+    { id: 'producto', t: { es: 'El producto', en: 'The product' } as L },
     { id: 'grafo', t: { es: 'Grafo', en: 'Graph' } as L },
-    { id: 'criterio', t: { es: 'Criterio', en: 'Judgment' } as L },
     { id: 'trayectoria', t: { es: 'Trayectoria', en: 'Background' } as L },
     { id: 'contacto', t: { es: 'Contacto', en: 'Contact' } as L },
   ],
