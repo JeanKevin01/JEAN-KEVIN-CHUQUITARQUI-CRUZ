@@ -1372,6 +1372,9 @@ section > * {
   color: var(--tx-3);
 }
 
+.marco picture {
+  display: block;
+}
 .marco img {
   display: block;
   width: 100%;

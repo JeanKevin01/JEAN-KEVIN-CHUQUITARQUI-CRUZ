@@ -104,13 +104,18 @@ export default function Producto() {
                 <i />
                 <span>{t(vista.t)}</span>
               </div>
-              <img
-                src={`/capturas/${vista.k}.webp`}
-                alt={`${t(vista.t)} — ${t(vista.pregunta)}`}
-                loading={activa === 0 ? 'eager' : 'lazy'}
-                width={1800}
-                height={1128}
-              />
+              {/* En móvil se sirve un recorte sin barra lateral: la captura de
+                  escritorio completa comprimida a 390 px no se lee. */}
+              <picture>
+                <source media="(max-width: 760px)" srcSet={`/capturas/${vista.k}-movil.webp`} />
+                <img
+                  src={`/capturas/${vista.k}.webp`}
+                  alt={`${t(vista.t)} — ${t(vista.pregunta)}`}
+                  loading={activa === 0 ? 'eager' : 'lazy'}
+                  width={1800}
+                  height={1128}
+                />
+              </picture>
               <span className="marco-pie">
                 {t(PRODUCTO.ampliar)} <Icono nombre="flecha" />
               </span>
@@ -153,6 +158,8 @@ export default function Producto() {
           <button className="lupa-cerrar" onClick={cerrar} aria-label={t(PRODUCTO.cerrar)}>
             ×
           </button>
+          {/* La vista ampliada siempre sirve la captura completa: es justamente
+              donde el usuario móvil quiere ver el detalle, y puede hacer zoom. */}
           <img
             src={`/capturas/${vista.k}.webp`}
             alt={`${t(vista.t)} — ${t(vista.pregunta)}`}
