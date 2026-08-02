@@ -14,7 +14,7 @@ import {
   RESTRICCIONES,
   RESUELVE,
   SISTEMA,
-  STACK,
+  TESIS,
   TRAYECTORIA,
 } from '../content/site'
 import { Contador, Icono, Reveal, Rico } from './ui'
@@ -141,6 +141,65 @@ export function Resuelve() {
   )
 }
 
+/* ── 07 · Para un asesor de tesis ─────────────────────────────────── */
+
+export function Tesis() {
+  const { t } = useI18n()
+  return (
+    <section id="tesis" className="borde-sup isla">
+      <div className="wrap">
+        <div className="cabecera">
+          <Reveal>
+            <div>
+              <span className="eyebrow">{t(TESIS.eyebrow)}</span>
+              <h2 className="titulo-seccion">{t(TESIS.titulo)}</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <p className="intro">{t(TESIS.intro)}</p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={60}>
+          <div className="aviso pregunta">
+            <span className="et">{t(TESIS.pregunta.et)}</span>
+            <p>
+              <Rico texto={t(TESIS.pregunta.d)} />
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="rejilla dos">
+          {TESIS.bloques.map((b, i) => (
+            <Reveal key={i} delay={(i % 2) * 80}>
+              <article className="tarjeta">
+                <h3>{t(b.t)}</h3>
+                <p>{t(b.d)}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={100}>
+          <div className="aviso" style={{ marginTop: '2.2rem' }}>
+            <h3>{t(TESIS.agenda.t)}</h3>
+            <p>{t(TESIS.agenda.d)}</p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={140}>
+          <div className="cta-bloque">
+            <a className="btn btn-primario" href={`mailto:${PERFIL.email}?subject=Tesis%20%C2%B7%20ASTRA%20ERA`}>
+              <Icono nombre="mail" /> {t(TESIS.cta)}
+            </a>
+            <span>{t(TESIS.ctaNota)}</span>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 /* ── Detalle técnico · plegable ───────────────────────────────────── */
 
 /**
@@ -153,7 +212,7 @@ export function DetalleTecnico({ children }: { children: ReactNode }) {
   const [abierto, setAbierto] = useState(false)
 
   return (
-    <section className="borde-sup detalle">
+    <section id="detalle" className="borde-sup detalle">
       <div className="wrap">
         <Reveal>
           <button className="detalle-cab" onClick={() => setAbierto(!abierto)} aria-expanded={abierto}>
@@ -179,7 +238,7 @@ export function DetalleTecnico({ children }: { children: ReactNode }) {
 export function Restricciones() {
   const { t } = useI18n()
   return (
-    <section className="borde-sup">
+    <section id="terreno" className="borde-sup">
       <div className="wrap">
         <Reveal>
           <span className="eyebrow">{t(RESTRICCIONES.eyebrow)}</span>
@@ -261,7 +320,7 @@ export function Sistema() {
 export function Cifras() {
   const { t } = useI18n()
   return (
-    <section className="borde-sup">
+    <section id="cifras" className="borde-sup isla">
       <div className="wrap">
         <Reveal>
           <span className="eyebrow">{t(CIFRAS.eyebrow)}</span>
@@ -523,43 +582,6 @@ export function Trayectoria() {
             </div>
           </Reveal>
         </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── 11 · Stack ───────────────────────────────────────────────────── */
-
-export function StackSeccion() {
-  const { t } = useI18n()
-  return (
-    <section className="borde-sup">
-      <div className="wrap">
-        <Reveal>
-          <span className="eyebrow">{t(STACK.eyebrow)}</span>
-          <h2 className="titulo-seccion">{t(STACK.titulo)}</h2>
-          <p className="intro" style={{ marginBottom: '2.2rem' }}>
-            {t(STACK.intro)}
-          </p>
-        </Reveal>
-
-        {STACK.grupos.map((g, i) => (
-          <Reveal key={i} delay={i * 50}>
-            <div className="stack-grupo">
-              <h3>{t(g.t)}</h3>
-              <div>
-                <p className="d">{t(g.d)}</p>
-                <div className="tags">
-                  {g.items.map((x) => (
-                    <span className="tag" key={x}>
-                      {x}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
       </div>
     </section>
   )

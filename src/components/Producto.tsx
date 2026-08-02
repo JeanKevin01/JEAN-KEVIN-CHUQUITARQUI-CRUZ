@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useI18n } from '../i18n'
 import { PRODUCTO } from '../content/site'
 import { Icono, Reveal } from './ui'
@@ -6,25 +6,51 @@ import { Icono, Reveal } from './ui'
 /**
  * Galería del producto: capturas reales del panel en producción.
  *
- * La imagen grande se precarga vía <link rel="preload"> implícito del navegador
- * al montar la primera; el resto entra con loading="lazy". La vista ampliada es
- * un diálogo modal propio —sin dependencias— que devuelve el foco al cerrar.
+ * La primera imagen carga con `eager` y el resto con `lazy`. La vista ampliada
+ * es un diálogo modal propio, sin dependencias: atrapa el tabulador, se cierra
+ * con Escape, navega con las flechas y devuelve el foco a quien la abrió.
  */
 export default function Producto() {
   const { t, lang } = useI18n()
   const [activa, setActiva] = useState(0)
   const [ampliada, setAmpliada] = useState(false)
+  const dialogo = useRef<HTMLDivElement>(null)
+  const invocador = useRef<HTMLElement | null>(null)
 
   const vista = PRODUCTO.vistas[activa]
   const cerrar = useCallback(() => setAmpliada(false), [])
 
+  const abrir = useCallback(() => {
+    invocador.current = document.activeElement as HTMLElement
+    setAmpliada(true)
+  }, [])
+
   useEffect(() => {
-    if (!ampliada) return
+    if (!ampliada) {
+      // Devuelve el foco a quien abrió la vista ampliada.
+      invocador.current?.focus?.()
+      return
+    }
+    dialogo.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') cerrar()
       if (e.key === 'ArrowRight') setActiva((i) => (i + 1) % PRODUCTO.vistas.length)
       if (e.key === 'ArrowLeft')
         setActiva((i) => (i - 1 + PRODUCTO.vistas.length) % PRODUCTO.vistas.length)
+      // Atrapa el tabulador dentro del diálogo.
+      if (e.key === 'Tab') {
+        const foco = dialogo.current?.querySelectorAll<HTMLElement>('button, [href], [tabindex]')
+        if (!foco?.length) return
+        const primero = foco[0]
+        const ultimo = foco[foco.length - 1]
+        if (e.shiftKey && document.activeElement === primero) {
+          e.preventDefault()
+          ultimo.focus()
+        } else if (!e.shiftKey && document.activeElement === ultimo) {
+          e.preventDefault()
+          primero.focus()
+        }
+      }
     }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -45,12 +71,11 @@ export default function Producto() {
 
         <div className="producto">
           {/* Selector de módulo */}
-          <div className="producto-menu" role="tablist" aria-label={t(PRODUCTO.titulo)}>
+          <div className="producto-menu">
             {PRODUCTO.vistas.map((v, i) => (
               <button
                 key={v.k}
-                role="tab"
-                aria-selected={i === activa}
+                aria-pressed={i === activa}
                 className="producto-tab"
                 data-on={i === activa}
                 onClick={() => setActiva(i)}
@@ -66,7 +91,7 @@ export default function Producto() {
 
           {/* Vista grande */}
           <div className="producto-vista">
-            <figure className="marco" onClick={() => setAmpliada(true)}>
+            <button className="marco" onClick={abrir} aria-label={`${t(PRODUCTO.ampliar)} — ${t(vista.t)}`}>
               <div className="marco-barra" aria-hidden>
                 <i />
                 <i />
@@ -80,10 +105,10 @@ export default function Producto() {
                 width={1800}
                 height={1128}
               />
-              <figcaption>
+              <span className="marco-pie">
                 {t(PRODUCTO.ampliar)} <Icono nombre="flecha" />
-              </figcaption>
-            </figure>
+              </span>
+            </button>
 
             <div className="producto-texto">
               <h3>{t(vista.pregunta)}</h3>
@@ -101,7 +126,7 @@ export default function Producto() {
       </div>
 
       {ampliada && (
-        <div className="lupa" role="dialog" aria-modal="true" onClick={cerrar}>
+        <div className="lupa" role="dialog" aria-modal="true" aria-label={t(vista.t)} tabIndex={-1} ref={dialogo} onClick={cerrar}>
           <button className="lupa-cerrar" onClick={cerrar} aria-label={t(PRODUCTO.cerrar)}>
             ×
           </button>

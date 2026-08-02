@@ -6,6 +6,19 @@ export default function Nav() {
   const { t, lang, setLang } = useI18n()
   const [solido, setSolido] = useState(false)
   const [activo, setActivo] = useState('inicio')
+  const [menu, setMenu] = useState(false)
+
+  // El panel móvil bloquea el scroll de fondo y se cierra con Escape.
+  useEffect(() => {
+    if (!menu) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenu(false)
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [menu])
 
   useEffect(() => {
     const onScroll = () => setSolido(window.scrollY > 40)
@@ -45,6 +58,10 @@ export default function Nav() {
         ))}
       </div>
 
+      <button className="nav-menu" onClick={() => setMenu(true)} aria-expanded={menu}>
+        {t(NAV.menu)}
+      </button>
+
       <div className="lang" role="group" aria-label="Idioma / Language">
         <button data-on={lang === 'es'} onClick={() => setLang('es')} aria-label="Español">
           ES
@@ -53,6 +70,20 @@ export default function Nav() {
           EN
         </button>
       </div>
+
+      {menu && (
+        <div className="nav-panel" role="dialog" aria-modal="true">
+          <button className="cerrar" onClick={() => setMenu(false)} aria-label={t(NAV.cerrar)}>
+            ×
+          </button>
+          {NAV.items.map((i, n) => (
+            <a key={i.id} href={`#${i.id}`} onClick={() => setMenu(false)}>
+              <span className="n">{String(n).padStart(2, '0')}</span>
+              {t(i.t)}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   )
 }

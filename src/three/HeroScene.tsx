@@ -1,7 +1,7 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { useCapacidad } from './useCapacidad'
+import { sinMovimiento, useCapacidad } from './useCapacidad'
 
 /**
  * Terreno de datos.
@@ -173,6 +173,7 @@ function Terreno({ grid, curvas, animar }: { grid: number; curvas: number; anima
   const reveal = useRef(animar ? 0 : 1)
   const scroll = useRef(0)
   const { viewport, camera } = useThree()
+  const quieto = useMemo(() => sinMovimiento(), [])
 
   const uniforms = useUniformes()
 
@@ -248,7 +249,9 @@ function Terreno({ grid, curvas, animar }: { grid: number; curvas: number; anima
       m.uniforms.uMouse.value.copy(actual.current)
       m.uniforms.uReveal.value = reveal.current
     }
-    if (grupo.current) grupo.current.rotation.y += dt * 0.028
+    // La rotación perpetua se detiene con prefers-reduced-motion: `ligero` solo
+    // baja la densidad, no es una respuesta a esa preferencia.
+    if (grupo.current && !quieto) grupo.current.rotation.y += dt * 0.028
 
     // Al bajar, la cámara se acerca al terreno y lo mira más de canto.
     const s = scroll.current

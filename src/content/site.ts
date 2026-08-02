@@ -179,6 +179,45 @@ export const PRODUCTO = {
   cerrar: { es: 'Cerrar', en: 'Close' } as L,
   vistas: [
     {
+      k: 'lookahead',
+      t: { es: 'LookAhead a 4 semanas', en: 'Four-week look-ahead' } as L,
+      pregunta: { es: '¿Qué viene y qué lo bloquea?', en: 'What is coming and what blocks it?' } as L,
+      d: {
+        es: 'La ventana móvil de cuatro semanas con la estructura real de la obra: partida, etapas con su peso, metrado base contra saldo, responsable y encadenamiento entre etapas. Se filtra por área y por frente, y sale en PDF para la reunión del lunes.',
+        en: 'The rolling four-week window with the real work breakdown: work item, weighted stages, base quantity against remaining, owner and stage-to-stage links. Filterable by area and front, exportable to PDF for the Monday meeting.',
+      } as L,
+      chips: {
+        es: ['ventana de 4 semanas', 'etapas ponderadas', 'saldo por partida', 'PDF'],
+        en: ['4-week window', 'weighted stages', 'remaining per item', 'PDF'],
+      },
+    },
+    {
+      k: 'programacion',
+      t: { es: 'Plan semanal y parte diario', en: 'Weekly plan and daily report' } as L,
+      pregunta: { es: '¿Qué se planificó y qué pasó?', en: 'What was planned and what happened?' } as L,
+      d: {
+        es: 'El plan del planner y el reporte de campo en el mismo calendario: lo programado, lo ejecutado y las fotos que mandó el supervisor desde la obra. No son dos sistemas que después hay que cruzar.',
+        en: 'The planner’s schedule and the field report on one calendar: what was scheduled, what was executed and the photos the supervisor sent from site. Not two systems to reconcile later.',
+      } as L,
+      chips: {
+        es: ['plan semanal', 'ejecutado', 'evidencia fotográfica'],
+        en: ['weekly plan', 'executed', 'photo evidence'],
+      },
+    },
+    {
+      k: 'histograma',
+      t: { es: 'Histograma y ratios', en: 'Histogram and ratios' } as L,
+      pregunta: { es: '¿Cuánta gente hace falta y rinde?', en: 'How many people, and do they perform?' } as L,
+      d: {
+        es: 'Cuánta mano de obra pide el plan cada día, y el ratio de horas-hombre por unidad de cada partida contra lo presupuestado. Verde si iguala o mejora el estándar, rojo si lo consume de más.',
+        en: 'How much labour the plan requires each day, and each work item’s man-hours per unit against budget. Green if it matches or beats the standard, red if it burns more.',
+      } as L,
+      chips: {
+        es: ['histograma de MO', 'ratio HH/unidad', 'real vs presupuesto'],
+        en: ['labour histogram', 'MH per unit', 'actual vs budget'],
+      },
+    },
+    {
       k: 'curva-s',
       t: { es: 'Curva S · valor ganado', en: 'S-curve · earned value' } as L,
       pregunta: { es: '¿Vamos atrasados o adelantados?', en: 'Are we behind or ahead?' } as L,
@@ -218,19 +257,6 @@ export const PRODUCTO = {
       },
     },
     {
-      k: 'programacion',
-      t: { es: 'Programación Last Planner', en: 'Last Planner scheduling' } as L,
-      pregunta: { es: '¿Qué se planificó y qué pasó?', en: 'What was planned and what happened?' } as L,
-      d: {
-        es: 'El plan semanal y el reporte de campo en el mismo calendario: lo programado, lo ejecutado y las fotos del parte diario. De ahí salen el PPC y las causas de no cumplimiento.',
-        en: 'The weekly plan and the field report on one calendar: what was scheduled, what was executed and the daily-report photos. PPC and non-completion causes come from here.',
-      } as L,
-      chips: {
-        es: ['LookAhead', 'PPC', 'restricciones', 'parte diario'],
-        en: ['look-ahead', 'PPC', 'constraints', 'daily report'],
-      },
-    },
-    {
       k: 'isp',
       t: { es: 'Productividad por disciplina', en: 'Productivity by discipline' } as L,
       pregunta: { es: '¿Dónde se está perdiendo?', en: 'Where are we losing?' } as L,
@@ -241,19 +267,6 @@ export const PRODUCTO = {
       chips: {
         es: ['por disciplina', 'HH improductivas', 'ISP'],
         en: ['by discipline', 'unproductive MH', 'ISP'],
-      },
-    },
-    {
-      k: 'performance',
-      t: { es: 'Corte semana a semana', en: 'Week-by-week cut' } as L,
-      pregunta: { es: '¿Cómo venimos evolucionando?', en: 'How are we trending?' } as L,
-      d: {
-        es: 'Una fila por semana con el corte completo del motor de cálculo. Es la serie histórica que permite ver si el proyecto mejora o se deteriora, no una foto suelta.',
-        en: 'One row per week with the calculation engine’s full cut. It is the historical series that shows whether the project is improving or deteriorating, not an isolated snapshot.',
-      } as L,
-      chips: {
-        es: ['serie semanal', 'desvío', 'proyección'],
-        en: ['weekly series', 'deviation', 'forecast'],
       },
     },
   ],
@@ -498,6 +511,77 @@ export const GRAFO = {
       en: 'File-level aggregated view. The full index holds 2,518 nodes and 8,801 edges at symbol level (functions, classes, routes, variables).',
     } as L,
   },
+}
+
+/* ── Para un asesor de tesis ──────────────────────────────────────── */
+
+/**
+ * Audiencia prioritaria del sitio. Redactado como borrador defendible: la
+ * pregunta y el alcance los tiene que cerrar el asesor, pero llegar con esto
+ * escrito cambia la conversación de "mira lo que hice" a "esto es dirigible".
+ */
+export const TESIS = {
+  eyebrow: { es: '07 — Investigación', en: '07 — Research' } as L,
+  titulo: {
+    es: 'Esto también es una tesis',
+    en: 'This is also a thesis',
+  } as L,
+  intro: {
+    es: 'El sistema está construido y desplegado; falta medirlo. Lo que sigue es el diseño de investigación con el que se puede convertir el piloto en evidencia, planteado para discutirse y corregirse, no como algo cerrado.',
+    en: 'The system is built and deployed; what is missing is measuring it. What follows is the research design that turns the pilot into evidence — written to be discussed and corrected, not as something closed.',
+  } as L,
+  pregunta: {
+    et: { es: 'Pregunta de investigación', en: 'Research question' } as L,
+    d: {
+      es: '¿Qué efecto tiene sustituir la captura manual del tareo por captura digital en campo sobre la **latencia** y la **confiabilidad** de los indicadores de control de producción —avance físico, productividad y cumplimiento del plan— en un contrato de obra civil?',
+      en: 'What effect does replacing manual timesheet capture with digital field capture have on the **latency** and **reliability** of production-control indicators —physical progress, productivity and plan compliance— in a civil works contract?',
+    } as L,
+  },
+  bloques: [
+    {
+      t: { es: 'Diseño', en: 'Design' } as L,
+      d: {
+        es: 'Pre-experimental de un solo grupo, medición antes y después. La línea base es el proceso actual en hojas de cálculo, reconstruida de los informes ya emitidos; el período de tratamiento es el piloto con el sistema en los mismos frentes y con las mismas cuadrillas.',
+        en: 'Single-group pre-experimental design with before/after measurement. The baseline is the current spreadsheet process, reconstructed from reports already issued; the treatment period is the pilot running on the same fronts with the same crews.',
+      } as L,
+    },
+    {
+      t: { es: 'Variables medidas', en: 'Measured variables' } as L,
+      d: {
+        es: 'Horas entre el cierre del turno y el indicador disponible · número de re-digitaciones por ciclo semanal · discrepancia entre el avance declarado y el avance auditable por hitos · PPC y causas de no cumplimiento · SPI y CPI del período.',
+        en: 'Hours between shift close and indicator availability · re-entries per weekly cycle · gap between declared progress and milestone-auditable progress · PPC and non-completion causes · period SPI and CPI.',
+      } as L,
+    },
+    {
+      t: { es: 'Marco de referencia', en: 'Reference framework' } as L,
+      d: {
+        es: 'Earned Value Management (PMI) para avance y desvío · Last Planner System (Ballard) para confiabilidad de la planificación · Physical % Complete con Activity Steps, tal como lo modela Primavera P6, para que el avance sea auditable y no declarativo.',
+        en: 'Earned Value Management (PMI) for progress and variance · Last Planner System (Ballard) for planning reliability · Physical % Complete with Activity Steps, as modelled by Primavera P6, so progress is auditable rather than declarative.',
+      } as L,
+    },
+    {
+      t: { es: 'Aporte esperado', en: 'Expected contribution' } as L,
+      d: {
+        es: 'Evidencia cuantitativa, en contexto peruano, de un problema que la literatura de lean construction describe pero rara vez mide: cuánto cuesta en tiempo y en exactitud que el dato de producción nazca desconectado del sistema que lo usa.',
+        en: 'Quantitative evidence, in a Peruvian context, of a problem the lean-construction literature describes but rarely measures: what it costs in time and accuracy for production data to be born disconnected from the system that consumes it.',
+      } as L,
+    },
+  ],
+  agenda: {
+    t: {
+      es: 'Lo que todavía no está resuelto es parte de la agenda',
+      en: 'What is still unsolved is part of the agenda',
+    } as L,
+    d: {
+      es: 'Un sistema sin límites declarados no es investigable. Los dos que más pesan —la línea base congelada y un indicador de productividad que hoy da el doble del estándar presupuestado— están identificados, documentados y deliberadamente abiertos: son exactamente el tipo de pregunta que un piloto con datos reales puede cerrar.',
+      en: 'A system with no declared limits is not researchable. The two that weigh most —the frozen baseline and a productivity indicator currently reading twice the budgeted standard— are identified, documented and deliberately open: precisely the kind of question a pilot with real data can settle.',
+    } as L,
+  },
+  cta: { es: 'Conversemos sobre la tesis', en: 'Let’s talk about the thesis' } as L,
+  ctaNota: {
+    es: 'Veinte minutos bastan para ver si encaja con su línea de investigación.',
+    en: 'Twenty minutes is enough to see whether it fits your research line.',
+  } as L,
 }
 
 /* ── Puerta al detalle técnico ────────────────────────────────────── */
@@ -842,10 +926,6 @@ export const TRAYECTORIA = {
           es: 'Lideré la sustentación técnica de trabajos extraordinarios, logrando la valorización y cobro de más de USD 30 000 en adicionales en un solo mes, mediante un control riguroso de horas-hombre y horas-máquina.',
           en: 'Led the technical justification of extra works, achieving valuation and collection of over USD 30,000 in additionals in a single month, through rigorous man-hour and machine-hour control.',
         } as L,
-        {
-          es: 'Control de equipos pesados y livianos para el control de costos operativos y el plan de mantenimiento preventivo.',
-          en: 'Heavy and light equipment control for operating cost control and the preventive maintenance plan.',
-        } as L,
       ],
     },
     {
@@ -941,22 +1021,17 @@ export const TRAYECTORIA = {
   },
   certificaciones: {
     t: { es: 'Certificaciones seleccionadas', en: 'Selected certifications' } as L,
+    // Selección deliberada: las de obra y dirección de proyectos, que son las
+    // que pesan ante un asesor de ingeniería civil. Las de IA y automatización
+    // viven en el LinkedIn; aquí restaban foco.
     items: [
-      { t: 'Claude Code in Action — Anthropic', d: '2026' },
-      { t: 'Claude with the Anthropic API — Anthropic', d: '2026' },
-      { t: 'Introduction to Model Context Protocol — Anthropic', d: '2026' },
-      { t: 'Introduction to Agent Skills — Anthropic', d: '2026' },
-      { t: 'Curso de Agentes AI · Python · Intro IA — Platzi', d: '2025' },
-      { t: 'Ingeniería de prompts · Power BI — Código Facilito', d: '2025' },
-      { t: 'Exploring AI Use Cases · Prompt Engineering — AWS', d: '2025' },
-      { t: 'Hackathon de n8n — EmprendIA LATAM', d: '2025' },
       { t: 'Metrados y lectura de planos — SENCICO / TEDI', d: '2022–2023' },
       {
         t: 'Diseño y cálculo de instalaciones eléctricas y sanitarias — CIP Piura / CECAPED',
         d: '2022',
       },
-      { t: 'XXX Congreso Nacional de Estudiantes de Ingeniería Civil — UNI', d: '2023' },
       { t: 'Congreso Internacional de Dirección de Proyectos — PMI Sur Perú', d: '2022 · 2024' },
+      { t: 'XXX Congreso Nacional de Estudiantes de Ingeniería Civil — UNI', d: '2023' },
     ],
   },
 }
@@ -1077,8 +1152,11 @@ export const NAV = {
     { id: 'resuelve', t: { es: 'Qué resuelve', en: 'What it solves' } as L },
     { id: 'sistema', t: { es: 'Sistema', en: 'System' } as L },
     { id: 'producto', t: { es: 'El producto', en: 'The product' } as L },
-    { id: 'grafo', t: { es: 'Grafo', en: 'Graph' } as L },
+    { id: 'cifras', t: { es: 'Cifras', en: 'Numbers' } as L },
+    { id: 'tesis', t: { es: 'Tesis', en: 'Thesis' } as L },
     { id: 'trayectoria', t: { es: 'Trayectoria', en: 'Background' } as L },
     { id: 'contacto', t: { es: 'Contacto', en: 'Contact' } as L },
   ],
+  menu: { es: 'Secciones', en: 'Sections' } as L,
+  cerrar: { es: 'Cerrar', en: 'Close' } as L,
 }

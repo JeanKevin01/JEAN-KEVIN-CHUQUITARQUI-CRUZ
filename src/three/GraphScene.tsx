@@ -2,7 +2,7 @@ import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { Html, OrbitControls } from '@react-three/drei'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { useCapacidad } from './useCapacidad'
+import { sinMovimiento, useCapacidad } from './useCapacidad'
 
 /* ── Tipos del dataset horneado por scripts/build-graph.mjs ───────── */
 
@@ -314,16 +314,20 @@ export default function GraphScene({
         />
         <Aristas nodos={datos.nodes} links={datos.links} activo={activo} seleccion={seleccion} />
         <Camara objetivo={objetivo} />
+        {/* enableZoom={false} a propósito: con el zoom activo, OrbitControls se
+            queda la rueda del ratón y la página deja de scrollear al llegar
+            aquí. Se puede girar arrastrando, que es la interacción que importa;
+            el acercamiento no vale un muro de scroll a media página. */}
         <OrbitControls
           makeDefault
           enablePan={false}
+          enableZoom={false}
           enableDamping
           dampingFactor={0.06}
           rotateSpeed={0.55}
-          zoomSpeed={0.75}
           minDistance={26}
           maxDistance={230}
-          autoRotate={girar && !seleccion}
+          autoRotate={girar && !seleccion && !sinMovimiento()}
           autoRotateSpeed={0.42}
         />
       </Canvas>

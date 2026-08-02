@@ -1,5 +1,18 @@
 import { useMemo } from 'react'
 
+/**
+ * ¿El usuario pidió menos movimiento?
+ *
+ * `ligero` baja la densidad de la malla, que no es lo mismo: una escena que
+ * gira sola para siempre es justo lo que esta media query existe para evitar.
+ * Las animaciones continuas (rotación del terreno, autoRotate del grafo) tienen
+ * que consultar esto, no `ligero`.
+ */
+export function sinMovimiento(): boolean {
+  if (typeof window === 'undefined') return true
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export type Capacidad = {
   /** El equipo es de gama baja o el usuario pidió menos movimiento. */
   ligero: boolean

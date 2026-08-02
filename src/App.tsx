@@ -14,14 +14,18 @@ import {
   Restricciones,
   Resuelve,
   Sistema,
-  StackSeccion,
+  Tesis,
   Trayectoria,
 } from './components/secciones'
 
 /**
- * Orden narrativo: primero qué problema hay y qué se resuelve, después cómo se
- * ve y recién al final cómo está hecho por dentro. El detalle de ingeniería va
- * plegado para que un lector no técnico llegue al contacto sin atravesarlo.
+ * Orden narrativo: qué problema hay, qué se resuelve, cómo se ve, y recién al
+ * final cómo está hecho por dentro.
+ *
+ * El grafo del código vive DENTRO del detalle plegado, no en el recorrido
+ * principal: no le habla ni al asesor de tesis ni al jefe de oficina técnica, y
+ * sus OrbitControls capturaban la rueda del ratón a media página —un muro de
+ * scroll justo antes del contacto—.
  */
 export default function App() {
   return (
@@ -35,15 +39,15 @@ export default function App() {
         <Producto />
         <Restricciones />
         <Cifras />
-        <Grafo />
+        <Tesis />
         <DetalleTecnico>
           <Decisiones />
           <Problemas />
           <Pendiente />
           <Metodo />
+          <Grafo />
         </DetalleTecnico>
         <Trayectoria />
-        <StackSeccion />
         <Cierre />
       </main>
     </>

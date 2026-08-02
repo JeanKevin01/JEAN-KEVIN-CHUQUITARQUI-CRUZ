@@ -12,7 +12,7 @@
 
   --tx: #e9ecf3;
   --tx-2: #a8b0c2;
-  --tx-3: #6d768c;
+  --tx-3: #8892a6;   /* 4.43:1 no llegaba a AA en texto pequeño; ahora ~5.4:1 */
 
   --ambar: #f5b83d;
   --ambar-suave: rgba(245, 184, 61, 0.14);
@@ -107,7 +107,7 @@ h4 {
 
 .titulo-seccion {
   font-size: clamp(1.9rem, 4.2vw, 3.15rem);
-  max-width: 20ch;
+  max-width: 26ch;
   margin-bottom: 1.4rem;
 }
 
@@ -139,7 +139,7 @@ b {
 
 section {
   position: relative;
-  padding: clamp(5rem, 11vh, 8.5rem) 0;
+  padding: clamp(3.5rem, 7vh, 5.5rem) 0;
 }
 
 /* La barra superior es fija: sin esto el salto por ancla esconde el eyebrow. */
@@ -469,8 +469,15 @@ section > * {
   gap: 1.1rem;
   margin-top: 3rem;
 }
+/* `auto-fit` metía 3 columnas en 1180 px y dejaba la cuarta tarjeta huérfana en
+   una fila propia. "dos" significa dos. */
 .rejilla.dos {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .rejilla.dos {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .rejilla.tres {
   grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
@@ -601,7 +608,8 @@ section > * {
 
 .cifras {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  /* 220px evita la fila huérfana: con 150px entraban 7 y la octava quedaba sola. */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -1259,34 +1267,45 @@ section > * {
   opacity: 1;
 }
 
+/* La jerarquía va invertida a propósito respecto del orden del marcado: lo que
+   vende es la pregunta ("¿Vamos atrasados?"), no el nombre técnico del módulo.
+   El nombre queda arriba, chico y en mono, como etiqueta. */
 .producto-tab span {
-  display: grid;
-  gap: 0.15rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2rem;
   min-width: 0;
 }
 .producto-tab strong {
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--tx-2);
-  line-height: 1.25;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tx-3);
+  line-height: 1.3;
 }
 .producto-tab[data-on='true'] strong {
-  color: var(--tx);
+  color: var(--ambar);
 }
 .producto-tab em {
   font-style: normal;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  color: var(--tx-3);
-  line-height: 1.35;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--tx-2);
+  line-height: 1.28;
 }
 .producto-tab[data-on='true'] em {
-  color: var(--ambar);
+  color: var(--tx);
 }
 
 /* Marco tipo ventana para que la captura se lea como producto, no como imagen suelta */
 .marco {
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
   border: 1px solid var(--line-fuerte);
   border-radius: 12px;
   overflow: hidden;
@@ -1325,7 +1344,7 @@ section > * {
   height: auto;
 }
 
-.marco figcaption {
+.marco-pie {
   position: absolute;
   right: 0.7rem;
   bottom: 0.7rem;
@@ -1345,7 +1364,7 @@ section > * {
   opacity: 0.72;
   transition: opacity 0.25s;
 }
-.marco:hover figcaption {
+.marco:hover .marco-pie {
   opacity: 1;
 }
 
@@ -1383,14 +1402,14 @@ section > * {
     scroll-snap-align: start;
     border: 1px solid var(--line);
   }
-  .marco figcaption {
+  .marco-pie {
     right: 0.45rem;
     bottom: 0.45rem;
     padding: 0.3rem 0.55rem;
     font-size: 0.6rem;
     gap: 0.25rem;
   }
-  .marco figcaption .ico-mini {
+  .marco .marco-pie .ico-mini {
     width: 13px;
     height: 13px;
   }
@@ -1511,6 +1530,153 @@ section > * {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.4rem;
+  }
+}
+
+/* ── Ritmo: islas de contraste ──────────────────────────────────── */
+
+/* Doce secciones sobre el mismo negro se leen como una sola losa. Las "islas"
+   levantan el fondo lo justo para que el ojo registre que cambió de capítulo. */
+.isla {
+  background: #0b1018;
+}
+.isla + .borde-sup,
+.isla {
+  border-top-color: var(--line-fuerte);
+}
+
+/* ── Cabecera de sección a dos columnas ─────────────────────────── */
+
+/* Antes el título se partía en tres líneas a la izquierda mientras la mitad
+   derecha del viewport quedaba vacía. */
+.cabecera {
+  display: grid;
+  gap: 1.4rem 3rem;
+  margin-bottom: 2.6rem;
+}
+@media (min-width: 1000px) {
+  .cabecera {
+    grid-template-columns: 1.05fr 1fr;
+    align-items: end;
+  }
+  .cabecera .titulo-seccion {
+    margin-bottom: 0;
+  }
+}
+
+/* ── Foco visible ───────────────────────────────────────────────── */
+
+/* `button { border: none; background: none }` dejaba el foco al anillo por
+   defecto del navegador, que sobre casi negro es invisible en varios. */
+:focus-visible {
+  outline: 2px solid var(--ambar);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Sección de tesis ───────────────────────────────────────────── */
+
+.aviso .et {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  margin-bottom: 0.9rem;
+}
+.aviso.pregunta {
+  margin-bottom: 2.2rem;
+}
+.aviso.pregunta p {
+  font-size: clamp(1.05rem, 1.9vw, 1.32rem);
+  line-height: 1.6;
+  color: var(--tx);
+}
+
+.cta-bloque {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 2.4rem;
+}
+.cta-bloque span {
+  color: var(--tx-3);
+  font-size: 0.9rem;
+}
+
+/* ── Nav móvil ──────────────────────────────────────────────────── */
+
+/* Bajo 900 px los enlaces se escondían SIN sustituto: en un documento largo el
+   usuario móvil no podía saltar a nada ni volver arriba. */
+.nav-menu {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tx-2);
+}
+
+.nav-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(5, 7, 13, 0.97);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 5rem clamp(1.4rem, 6vw, 3rem) 3rem;
+  animation: aparecer 0.18s ease;
+}
+.nav-panel a {
+  display: block;
+  padding: 0.95rem 0.4rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.22rem;
+  color: var(--tx);
+}
+.nav-panel a .n {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ambar);
+  margin-right: 0.9rem;
+}
+.nav-panel .cerrar {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: var(--tx-2);
+}
+
+@media (max-width: 900px) {
+  .nav-menu {
+    display: inline-flex;
+  }
+}
+
+/* Objetivos táctiles: el conmutador de idioma medía 34×28. */
+@media (max-width: 900px) {
+  .lang button {
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 0.74rem;
+  }
+  .chip {
+    min-height: 40px;
   }
 }
 
