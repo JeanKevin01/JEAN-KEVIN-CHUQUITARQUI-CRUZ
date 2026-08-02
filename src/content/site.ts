@@ -172,8 +172,8 @@ export const PRODUCTO = {
     en: 'This is what the technical office sees',
   } as L,
   intro: {
-    es: 'Capturas del sistema corriendo en producción, no maquetas. Los nombres de personas están reemplazados y las fotos de obra desenfocadas por confidencialidad; los números y los gráficos son los reales.',
-    en: 'Screenshots of the system running in production, not mockups. People’s names are replaced and site photos blurred for confidentiality; the numbers and charts are the real ones.',
+    es: 'El sistema es real y está corriendo en producción; esto no son maquetas. Los datos que se ven corresponden a un proyecto de demostración, no a un cliente: la obra que valida el motor de cálculo está bajo confidencialidad.',
+    en: 'The system is real and running in production; these are not mockups. The data shown belongs to a demonstration project, not to a client: the site that validates the calculation engine is under confidentiality.',
   } as L,
   ampliar: { es: 'Clic para ampliar', en: 'Click to enlarge' } as L,
   cerrar: { es: 'Cerrar', en: 'Close' } as L,
