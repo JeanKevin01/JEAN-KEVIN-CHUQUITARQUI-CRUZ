@@ -75,8 +75,21 @@ revalidación horaria y el resto con `no-cache`.
 
 El contenido describe el sistema de control de obra en términos genéricos —"una
 operación minera", "contratos de obra"—. No incluye nombres de cliente, de campamento o
-de área de planta, números de orden de trabajo, datos de trabajadores ni capturas del
-panel de producción.
+de área de planta, números de orden de trabajo ni datos de trabajadores.
+
+La sección **El producto** (`public/capturas/`) sí muestra capturas del panel en
+producción. Están saneadas antes de capturarse, no después:
+
+| Dato | Tratamiento |
+|---|---|
+| Marca del empleador | Reemplazada por **ASTRA ERA** en el DOM |
+| Nombres de personas | Sustituidos por `SUPERVISOR NN` |
+| Nº de orden de trabajo (`AIT…`, `IO-…`) | Eliminados del texto |
+| Fotos de evidencia de obra | Desenfocadas |
+
+Los valores numéricos y los gráficos se dejan intactos: son horas-hombre y porcentajes
+de avance, sin identificación de cliente. Al reponer las capturas hay que volver a pasar
+el mismo saneamiento —una captura cruda del panel **no** es publicable—.
 
 ---
 
