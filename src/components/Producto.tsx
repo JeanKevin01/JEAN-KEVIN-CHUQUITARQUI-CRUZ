@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useI18n } from '../i18n'
-import { PRODUCTO } from '../content/site'
+import { PERFIL, PRODUCTO } from '../content/site'
 import { Icono, Reveal } from './ui'
 
 /**
@@ -123,6 +123,23 @@ export default function Producto() {
             </div>
           </div>
         </div>
+
+        {/* Único CTA entre el héroe y el pie: sin esto no había ninguna llamada
+            a la acción en 13.000 px de recorrido. */}
+        <Reveal delay={80}>
+          <aside className="cta-medio">
+            <div>
+              <h3>{t(PRODUCTO.cta.t)}</h3>
+              <p>{t(PRODUCTO.cta.d)}</p>
+            </div>
+            <a
+              className="btn btn-primario"
+              href={`mailto:${PERFIL.email}?subject=Demostraci%C3%B3n%20%C2%B7%20ASTRA%20ERA`}
+            >
+              <Icono nombre="mail" /> {t(PRODUCTO.cta.boton)}
+            </a>
+          </aside>
+        </Reveal>
       </div>
 
       {ampliada && (

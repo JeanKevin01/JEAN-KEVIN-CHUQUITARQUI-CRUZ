@@ -1533,6 +1533,155 @@ section > * {
   }
 }
 
+/* ── El recorrido de un dato ────────────────────────────────────── */
+
+/* La demostración visual de "un dato de origen, una sola cadena": el mismo
+   registro atraviesa cuatro etapas y en cada una se destaca en qué se
+   convirtió. Es HTML y no SVG a propósito — tiene que reflowear en móvil. */
+.recorrido {
+  margin-top: 3.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: linear-gradient(180deg, rgba(245, 184, 61, 0.045), transparent 40%);
+  overflow: hidden;
+}
+
+.recorrido-cab {
+  padding: 1.6rem clamp(1.2rem, 3vw, 2rem) 0;
+}
+.recorrido-cab .et {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ambar);
+  border: 1px solid rgba(245, 184, 61, 0.35);
+  border-radius: 999px;
+  padding: 0.22rem 0.65rem;
+  margin-bottom: 0.9rem;
+}
+.recorrido-cab h3 {
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  max-width: 30ch;
+}
+
+.recorrido-pasos {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  margin: 1.6rem 0 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 900px) {
+  .recorrido-pasos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.recorrido-paso {
+  position: relative;
+  background: var(--bg-2);
+  padding: 1.5rem clamp(1.1rem, 2.2vw, 1.4rem) 1.6rem;
+  height: 100%;
+}
+
+/* La punta de flecha entre etapas: en escritorio apunta a la derecha, en móvil
+   hacia abajo. Es lo que hace legible que se trata de un recorrido. */
+.recorrido-pasos > .reveal:not(:last-child) .recorrido-paso::after {
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid var(--ambar);
+  border-bottom: 1.5px solid var(--ambar);
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  background: var(--bg-2);
+  z-index: 2;
+}
+@media (max-width: 899px) {
+  .recorrido-pasos > .reveal:not(:last-child) .recorrido-paso::after {
+    right: 50%;
+    top: auto;
+    bottom: -5px;
+    transform: translateX(50%) rotate(45deg);
+  }
+}
+
+.recorrido-paso .n {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--tx-3);
+}
+.recorrido-paso .donde {
+  display: block;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ambar);
+  line-height: 1.3;
+}
+.recorrido-paso .que {
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  line-height: 1.55;
+  color: var(--tx-2);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px dashed var(--line);
+}
+.recorrido-paso .dato {
+  display: block;
+  margin: 0.9rem 0 0.75rem;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--tx);
+}
+.recorrido-paso .nota {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--tx-3);
+}
+
+.recorrido-remate {
+  padding: 1.4rem clamp(1.2rem, 3vw, 2rem);
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+  color: var(--tx-2);
+}
+
+/* ── Llamada a la acción intermedia ─────────────────────────────── */
+
+.cta-medio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding: 1.7rem clamp(1.3rem, 3vw, 2.2rem);
+  border: 1px solid rgba(245, 184, 61, 0.3);
+  border-radius: var(--r);
+  background: linear-gradient(120deg, rgba(245, 184, 61, 0.09), transparent 62%);
+}
+.cta-medio h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.45rem;
+}
+.cta-medio p {
+  color: var(--tx-2);
+  font-size: 0.93rem;
+  line-height: 1.65;
+  max-width: 58ch;
+}
+.cta-medio .btn {
+  flex: none;
+}
+
 /* ── Ritmo: islas de contraste ──────────────────────────────────── */
 
 /* Doce secciones sobre el mismo negro se leen como una sola losa. Las "islas"

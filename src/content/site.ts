@@ -105,6 +105,83 @@ export const CADENA = {
   } as L,
 }
 
+/* ── El recorrido de un dato ──────────────────────────────────────── */
+
+/**
+ * La pieza que demuestra la tesis del sitio: un registro de campo atraviesa
+ * las cuatro etapas sin que nadie lo vuelva a digitar. Las cifras son un
+ * ejemplo trabajado, no datos de una obra — se etiqueta como tal.
+ */
+export const RECORRIDO = {
+  et: { es: 'Ejemplo trabajado', en: 'Worked example' } as L,
+  titulo: {
+    es: 'Un registro, cuatro etapas, cero re-digitación',
+    en: 'One record, four stages, zero re-entry',
+  } as L,
+  pasos: [
+    {
+      n: '01',
+      donde: { es: 'En campo, 6 de la tarde', en: 'On site, six in the evening' } as L,
+      que: {
+        es: 'Cuadrilla 3 · partida 3.2.1 · vaciado de concreto',
+        en: 'Crew 3 · item 3.2.1 · concrete pour',
+      } as L,
+      dato: '8,0 HH',
+      datoEn: '8.0 MH',
+      nota: {
+        es: 'El supervisor lo registra en el celular. Si no hay señal, queda en el teléfono y sube solo cuando vuelve.',
+        en: 'The supervisor records it on the phone. With no signal it stays there and uploads by itself when coverage returns.',
+      } as L,
+    },
+    {
+      n: '02',
+      donde: { es: 'Motor de valor ganado', en: 'Earned value engine' } as L,
+      que: {
+        es: 'Hito «vaciado» (40%) sobre un metrado de 15 m³',
+        en: '“Pour” milestone (40%) over a 15 m³ quantity',
+      } as L,
+      dato: '+7,5 HH ganadas',
+      datoEn: '+7.5 MH earned',
+      nota: {
+        es: 'El avance físico se convierte a horas-hombre con la productividad que el presupuesto le asignó a esa partida.',
+        en: 'Physical progress converts to man-hours using the productivity the budget assigned to that work item.',
+      } as L,
+    },
+    {
+      n: '03',
+      donde: { es: 'Indicadores de la semana', en: 'Weekly indicators' } as L,
+      que: {
+        es: '7,5 ganadas ÷ 8,0 gastadas, contra la curva del plan',
+        en: '7.5 earned ÷ 8.0 spent, against the planned curve',
+      } as L,
+      dato: 'ISP 0,94',
+      datoEn: 'ISP 0.94',
+      nota: {
+        es: 'Productividad y cronograma salen del mismo registro. Nadie abrió una hoja de cálculo.',
+        en: 'Productivity and schedule come from the same record. Nobody opened a spreadsheet.',
+      } as L,
+    },
+    {
+      n: '04',
+      donde: { es: 'Resultado operativo del mes', en: 'Monthly operating result' } as L,
+      que: {
+        es: 'Esas 8,0 HH entran al costo por la tarifa del cargo',
+        en: 'Those 8.0 MH enter cost through the role’s rate',
+      } as L,
+      dato: 'margen −2,1%',
+      datoEn: 'margin −2.1%',
+      nota: {
+        es: 'El mismo dato de las seis de la tarde llega hasta la pregunta que importa: ¿este proyecto gana dinero?',
+        en: 'That same six-o’clock record reaches the question that matters: is this project making money?',
+      } as L,
+    },
+  ],
+  remate: {
+    es: 'En la cadena rota de arriba, este mismo recorrido son **cinco archivos y cuatro re-digitaciones**. Aquí es una sola escritura.',
+    en: 'In the broken chain above, this same journey is **five files and four re-entries**. Here it is a single write.',
+  } as L,
+}
+
 /* ── Qué resuelve ─────────────────────────────────────────────────── */
 
 export const RESUELVE = {
@@ -150,12 +227,12 @@ export const RESUELVE = {
     },
     {
       antes: {
-        es: 'Cuando el número final no cuadraba, no había forma de rastrear dónde se rompió.',
-        en: 'When the final number did not add up, there was no way to trace where it broke.',
+        es: 'El supervisor sin señal anotaba en papel y lo pasaba al día siguiente, o al otro.',
+        en: 'With no signal the supervisor wrote on paper and typed it in the next day, or the one after.',
       } as L,
       ahora: {
-        es: 'Cada cifra se puede seguir hacia atrás hasta el turno y la persona que la registró.',
-        en: 'Every figure can be traced back to the shift and the person who recorded it.',
+        es: 'Registra en el celular igual: queda en el teléfono y sube solo cuando vuelve la cobertura.',
+        en: 'They record on the phone anyway: it stays there and uploads by itself when coverage returns.',
       } as L,
     },
   ],
@@ -177,6 +254,14 @@ export const PRODUCTO = {
   } as L,
   ampliar: { es: 'Clic para ampliar', en: 'Click to enlarge' } as L,
   cerrar: { es: 'Cerrar', en: 'Close' } as L,
+  cta: {
+    t: { es: '¿Y con sus propios números?', en: 'And with your own numbers?' } as L,
+    d: {
+      es: 'El sistema está corriendo. Si quiere verlo con las partidas y las cuadrillas de su obra, una llamada de veinte minutos alcanza para saber si encaja.',
+      en: 'The system is running. To see it with your own work items and crews, a twenty-minute call is enough to tell whether it fits.',
+    } as L,
+    boton: { es: 'Agendar una demostración', en: 'Book a walkthrough' } as L,
+  },
   vistas: [
     {
       k: 'lookahead',
@@ -896,8 +981,8 @@ export const METODO = {
     },
   ],
   cierre: {
-    es: 'Un asistente escribe funciones. Nadie más que el arquitecto sabe que sumar dos fuentes de horas destruye el indicador.',
-    en: 'An assistant writes functions. Only the architect knows that adding two sources of hours destroys the indicator.',
+    es: 'La máquina acelera la escritura. No sustituye saber qué hay que escribir, ni por qué.',
+    en: 'The machine speeds up the writing. It does not replace knowing what to write, or why.',
   } as L,
 }
 

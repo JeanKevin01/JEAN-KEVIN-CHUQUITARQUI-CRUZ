@@ -11,6 +11,7 @@ import {
   PERFIL,
   PROBLEMAS,
   PROPOSITO,
+  RECORRIDO,
   RESTRICCIONES,
   RESUELVE,
   SISTEMA,
@@ -266,7 +267,7 @@ export function Restricciones() {
 /* ── 03 · El sistema ──────────────────────────────────────────────── */
 
 export function Sistema() {
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const iconos = ['campo', 'panel', 'api']
 
   return (
@@ -293,15 +294,33 @@ export function Sistema() {
           ))}
         </div>
 
-        <div className="flujo">
-          {SISTEMA.flujo.map((f, i) => (
-            <Reveal key={i} delay={i * 70}>
-              <div className="flujo-paso">
-                <h4>{t(f.t)}</h4>
-                <p>{t(f.d)}</p>
-              </div>
-            </Reveal>
-          ))}
+        {/* El recorrido de un solo registro: es el argumento central del sitio
+            y antes eran cuatro cajitas de texto que ni entraban en pantalla. */}
+        <div className="recorrido">
+          <div className="recorrido-cab">
+            <span className="et">{t(RECORRIDO.et)}</span>
+            <h3>{t(RECORRIDO.titulo)}</h3>
+          </div>
+
+          <ol className="recorrido-pasos">
+            {RECORRIDO.pasos.map((p, i) => (
+              <Reveal key={p.n} delay={i * 90}>
+                <li className="recorrido-paso">
+                  <span className="n">{p.n}</span>
+                  <span className="donde">{t(p.donde)}</span>
+                  <p className="que">{t(p.que)}</p>
+                  <strong className="dato">{lang === 'en' ? p.datoEn : p.dato}</strong>
+                  <p className="nota">{t(p.nota)}</p>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+
+          <Reveal delay={120}>
+            <p className="recorrido-remate">
+              <Rico texto={t(RECORRIDO.remate)} />
+            </p>
+          </Reveal>
         </div>
 
         <Reveal delay={110}>
