@@ -280,9 +280,23 @@ section > * {
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Protege la legibilidad de la columna de texto sin apagar el terreno: un
+     velo ceñido a la izquierda deja respirar la mitad derecha de la escena,
+     que es donde el relieve se ve mejor. */
   background:
-    radial-gradient(ellipse 70% 55% at 22% 45%, rgba(5, 7, 13, 0.92), transparent 72%),
-    linear-gradient(to bottom, transparent 55%, var(--bg) 97%);
+    radial-gradient(
+      ellipse 60% 62% at 16% 52%,
+      rgba(5, 7, 13, 0.95),
+      rgba(5, 7, 13, 0.55) 46%,
+      transparent 78%
+    ),
+    linear-gradient(
+      104deg,
+      rgba(5, 7, 13, 0.88) 0%,
+      rgba(5, 7, 13, 0.38) 36%,
+      transparent 60%
+    ),
+    linear-gradient(to bottom, transparent 58%, var(--bg) 98%);
   pointer-events: none;
 }
 

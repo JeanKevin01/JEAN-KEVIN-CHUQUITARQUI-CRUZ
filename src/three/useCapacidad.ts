@@ -7,6 +7,8 @@ export type Capacidad = {
   sin3d: boolean
   /** Densidad de la retícula del héroe. */
   grid: number
+  /** Cuántas curvas de nivel dibuja el héroe. */
+  curvas: number
   dpr: [number, number]
 }
 
@@ -17,7 +19,8 @@ export type Capacidad = {
  */
 export function useCapacidad(): Capacidad {
   return useMemo(() => {
-    if (typeof window === 'undefined') return { ligero: true, sin3d: true, grid: 60, dpr: [1, 1] }
+    if (typeof window === 'undefined')
+      return { ligero: true, sin3d: true, grid: 60, curvas: 14, dpr: [1, 1] }
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const angosto = window.innerWidth < 760
@@ -37,6 +40,7 @@ export function useCapacidad(): Capacidad {
       ligero,
       sin3d: !webgl,
       grid: ligero ? 86 : 150,
+      curvas: ligero ? 18 : 34,
       dpr: ligero ? [1, 1.25] : [1, 1.75],
     }
   }, [])
